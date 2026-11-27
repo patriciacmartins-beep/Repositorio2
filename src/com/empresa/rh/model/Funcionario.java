@@ -1,3 +1,5 @@
+package com.empresa.rh.model;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,7 +12,6 @@ public class Funcionario {
     private Cargo cargo;
     private Departamento departamento;
 
-    // Construtor corrigido com tipos e parâmetros corretos e sem duplicações
     public Funcionario(int id, String nome, String cpf, LocalDate admissao, Cargo cargo, Departamento departamento) {
         this.id = id;
         this.nome = nome;
@@ -93,9 +94,18 @@ public class Funcionario {
         }
 
         if (cpfExiste) {
-            System.out.println("Erro: O CPF " + this.cpf + " já está registado no sistema!");
+            System.out.println("Erro: O CPF " + this.cpf + " já está registrado no sistema!");
         } else {
             System.out.println("Sucesso: O CPF " + this.cpf + " é único e válido.");
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %-4d | %-22s | CPF: %s | %-24s | %-24s | Admissão: %s",
+                id, nome, cpf,
+                cargo == null ? "-" : cargo.getTitulo(),
+                departamento == null ? "-" : departamento.getNome(),
+                admissao.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 }

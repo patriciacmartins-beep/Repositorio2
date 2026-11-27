@@ -1,3 +1,5 @@
+package com.empresa.rh.model;
+
 public class Cargo {
 
     private int id;
@@ -43,8 +45,7 @@ public class Cargo {
         this.salarioMinimo = salarioMinimo;
     }
 
-    // Corrigido: Mudámos o nome do parâmetro para 'novoSalario' para evitar
-    // conflito com 'this.salarioBase'
+    // RN01: só aceita o novo salário se ele não for menor que o salário mínimo vigente
     public void validarSalario(double novoSalario) {
         if (novoSalario >= salarioMinimo) {
             this.salarioBase = novoSalario; // Atribui corretamente ao atributo da classe
@@ -56,11 +57,15 @@ public class Cargo {
 
     public void verificarSalarioBanco(double salarioInformado, double salarioDoBanco) {
         if (salarioInformado == salarioDoBanco) {
-            System.out.println("Sucesso: O salário confere exatamente com o registado no banco de dados!");
+            System.out.println("Sucesso: O salário confere exatamente com o registrado no banco de dados!");
         } else {
             System.out.println("Erro: O salário informado (R$ " + salarioInformado
                     + ") é diferente do salário base cadastrado no banco (R$ " + salarioDoBanco + ")!");
         }
     }
 
+    @Override
+    public String toString() {
+        return String.format("ID: %-4d | Cargo: %-28s | Salário base: R$ %,.2f", id, titulo, salarioBase);
+    }
 }

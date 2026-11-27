@@ -1,3 +1,5 @@
+package com.empresa.rh.model;
+
 public class Departamento {
 
     private int id;
@@ -35,5 +37,10 @@ public class Departamento {
     //Atualiza o orçamento de um departamento - basta chamar o método passando o novo valor
     public void setOrcamento(double orcamento) {
         this.orcamento = orcamento;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID: %-4d | Departamento: %-28s | Orçamento: R$ %,.2f", id, nome, orcamento);
     }
 }
